@@ -3,13 +3,13 @@ import { addToCart, removeFromCart } from "../../store/slices/cart-slice";
 
 export default function Products({ product }) {
   const dispatch = useDispatch();
-  const {cart} = useSelector(state=>state) 
+  const { cart } = useSelector((state) => state);
   function handleAddToCart() {
     dispatch(addToCart(product));
   }
 
-  function handleRemoveFromCart(){
-    dispatch(removeFromCart(product.id))
+  function handleRemoveFromCart() {
+    dispatch(removeFromCart(product.id));
   }
 
   return (
@@ -29,15 +29,19 @@ export default function Products({ product }) {
         </div>
         <div className="flex items-center justify-center w-full mt-5">
           <button
-            onClick={cart.some(item=>item.id === product.id) ? handleRemoveFromCart: handleAddToCart}
+            onClick={
+              cart.some((item) => item.id === product.id)
+                ? handleRemoveFromCart
+                : handleAddToCart
+            }
             className="bg-blue-950 text-white p-2 border-2 rounded-lg font-semibold "
-
-          >{  
-            cart.some(item=>item.id === product.id) ? "Remove from cart": "Add to cart"
-          }
+          >
+            {cart.some((item) => item.id === product.id)
+              ? "Remove from cart"
+              : "Add to cart"}
           </button>
         </div>
       </div>
-    </div> 
+    </div>
   );
 }
